@@ -1,0 +1,24 @@
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Main 
+{
+internal static class Program
+	{
+	private static void Main(string[] args)
+		{
+			string encrypted = "<pass_from_dbo.Credentials>";
+			if (string.IsNullOrEmpty(encrypted))
+			{
+				return;
+			}
+			byte[] encryptedData = Convert.FromBase64String(encrypted);
+			Console.WriteLine(Encoding.UTF8.GetString(ProtectedData.Unprotect(encryptedData, null, DataProtectionScope.LocalMachine)));
+		}
+}
+}
